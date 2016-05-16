@@ -171,7 +171,7 @@ void setup() {
   // sketchFrameRate. Using the originalReuseFrames variable
   // to set this, so that if the user changes it later with
   // the arrow keys, it can always be reset to the original
-  originalReuseFrames = 2;
+  originalReuseFrames = 1;
   reuseFrames = originalReuseFrames;
 
   // Setting the total saved frames required i.e. the buffer size
