@@ -22,8 +22,8 @@ Boolean internetAvailable = true;
 
 // The ability to send images to twitter is off by default, and
 // can be turned on by changing this variable
-Boolean twitterOn = false;  
-String tweetText = "Tweeting images from Tweet A Twist.";
+Boolean twitterOn = true;  
+String tweetText = "Tweet A Twist.";
 String tweetHashtags = "#processing #java";
 String twitterQuery = "#tweetatwist";
 
@@ -482,9 +482,11 @@ void keyPressed() {
   // fullscreen
   fullscreen = false;
 
+  println(keyCode);
   // SPACEBAR
-  if (keyCode == 32)
+  if (keyCode == 32 || keyCode == 33 || keyCode == 34)
   {
+    println("Capture Image");
     // Saving an image
     thread("captureAnImage");
   } else if (keyCode == ENTER)
