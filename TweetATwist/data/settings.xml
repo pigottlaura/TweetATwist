@@ -3,19 +3,20 @@
 	<instructionScreen>
 		<section type="general">
 			<line>Press the Enter key to show / hide the "Let's Twist Again" Video</line>
-			<line>Type letters from a-z to generate random bubbles on screen</line>
+			<!--<line>Type letters from a-z to generate random bubbles on screen</line>-->
 			<line>Use the up / down arrow keys to change the quality / speed of your image</line>
 			<line>Press the left / right arrow keys to reset the quality / speed of your image to it's defaults</line>
 			<line>Click on a saved image to zoom it on it (click again to zoom out)</line>
 		</section>
 		
 		<section type="internet">
-			<line>Use the number keypad to choose which news source to read in headlines from</line>
+			<!--<line>Use the number keypad to choose which news source to read in headlines from</line>-->
 		</section>
 		
 		<section type="noInternet">
 			<line>Press the Spacebar to take a picture of yourself</line>
-			<line>There is no internet available, so Twitter &amp; RSS feeds have been disabled</line>
+			<line>There is no internet available, so Twitter has been disabled</line>
+			<!--<line>There is no internet available, so Twitter &amp; RSS feeds have been disabled</line>-->
 		</section>
 		
 		<section type="twitter">

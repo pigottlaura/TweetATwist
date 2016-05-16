@@ -69,6 +69,8 @@ int saveToFrame = 0;
 // in the draw function
 PImage slitImage;
 
+String newestImagePath;
+
 // Lets Twist Again Movie Setup
 Movie letsTwistAgain;
 
@@ -136,17 +138,17 @@ void setup() {
 
   /*
   SD PC
-  size(640, 360);
-  sketchFrameRate = 60;
-  liveStreamFrameRate = 30;
-  */
+   size(640, 360);
+   sketchFrameRate = 60;
+   liveStreamFrameRate = 30;
+   */
 
   /*
   HD MAC */
   fullScreen();
   sketchFrameRate = 90;
   liveStreamFrameRate = 90;
-  
+
   settings = loadXML("settings.xml");
 
   // These variables are used below to calculate the required buffer,
@@ -529,33 +531,33 @@ void keyPressed() {
     //thread("getNewsXmlSource");
   } else {
     /* COMMENTED OUT FOR PEN AND PIXEL
-    
-    // Mapping the keyCodes which could represent a letter in the alphabet
-    // (a-z lowercase) i.e. 65-90, to map to a range of 10 - 255, which I will use
-    // as the width of the bubble that will be created
-    int currentKey = round(map(keyCode, 65, 90, 10, 255));
-    //println("The size value assigned to the character " + key + " is "  + currentKey);
-
-    for (int i = 0; i < keyboardButtons.length; i++)
-    {
-      // Getting the character and the x position value of the
-      // current element in the XML array
-      String keyChar = keyboardButtons[i].getString("char");
-      int keyValue = keyboardButtons[i].getInt("value");
-
-      // Checking if the current element in the array is in the list of characters
-      // that I have assigned values to in the external XML page to get the x position 
-      // we want to assign to the button
-      if (String.valueOf(key).indexOf(keyChar) >= 0)
-      {
-        //println("The x position value assigned to the character " + keyChar + " is " + keyValue);
-        bubbleSize = currentKey;
-        bubbleXPos = keyValue;
-        thread("generateBubble");
-      }
-    }
-    
-    */
+     
+     // Mapping the keyCodes which could represent a letter in the alphabet
+     // (a-z lowercase) i.e. 65-90, to map to a range of 10 - 255, which I will use
+     // as the width of the bubble that will be created
+     int currentKey = round(map(keyCode, 65, 90, 10, 255));
+     //println("The size value assigned to the character " + key + " is "  + currentKey);
+     
+     for (int i = 0; i < keyboardButtons.length; i++)
+     {
+     // Getting the character and the x position value of the
+     // current element in the XML array
+     String keyChar = keyboardButtons[i].getString("char");
+     int keyValue = keyboardButtons[i].getInt("value");
+     
+     // Checking if the current element in the array is in the list of characters
+     // that I have assigned values to in the external XML page to get the x position 
+     // we want to assign to the button
+     if (String.valueOf(key).indexOf(keyChar) >= 0)
+     {
+     //println("The x position value assigned to the character " + keyChar + " is " + keyValue);
+     bubbleSize = currentKey;
+     bubbleXPos = keyValue;
+     thread("generateBubble");
+     }
+     }
+     
+     */
   }
 }
 
@@ -658,20 +660,20 @@ void getNewsXmlSource() {
   // relevant xml element in the newsSources XML document
   newsXmlSourceUrl = newsSources[getNewsAt].getString("href");
   try {
-  // Loading in the XML from the news source url specified above
-  rteNewsXmlData = loadXML(newsXmlSourceUrl);
+    // Loading in the XML from the news source url specified above
+    rteNewsXmlData = loadXML(newsXmlSourceUrl);
 
-  // Getting the type of news e.g. business, sport etc, so that I can print out
-  // below what the news source is titles
-  newsType = newsSources[getNewsAt].getString("from");
+    // Getting the type of news e.g. business, sport etc, so that I can print out
+    // below what the news source is titles
+    newsType = newsSources[getNewsAt].getString("from");
 
-  // Calling to getLatestNews thread to load in the newest XML from this source
-  thread("getLatestNews");
+    // Calling to getLatestNews thread to load in the newest XML from this source
+    thread("getLatestNews");
 
-  println("You will now receieve news updates from " + newsType);
-  println("--------------------------------------------------------------------------");
-  
-  } catch (Exception e){
+    println("You will now receieve news updates from " + newsType);
+    println("--------------------------------------------------------------------------");
+  } 
+  catch (Exception e) {
     println("Could not load XML");
   }
 }
@@ -836,7 +838,7 @@ void tweetWithImage()
     // save the image out of the sketch, only to load it back in a few milli seconds later,
     // but as the setMedia() method calls for a File object, this is the closest I can get
     // at the moment.
-    File tweetImage = new File(currentDirectory + "/data/twitterImage.jpg");
+    File tweetImage = new File(currentDirectory + "/" + newestImagePath);
 
     // Setting the media item of the tweet to be the image we just loaded back in above
     // i.e. the most recent slitVideoImage
@@ -915,9 +917,23 @@ void captureAnImage() {
     // want to save the slit video image. I need to save the image out as a jpeg, so that the
     // tweetWithImage thread can read it back in as a File, as the twitter4j .setMedia()
     // method only accepts File objects as an argument.
-    PImage saveForTwitter = createImage(100, 100, RGB);
-    saveForTwitter = slitImage.get();
-    saveForTwitter.save("data/twitterImage.jpg");
+    PImage saveImage = createImage(100, 100, RGB);
+    saveImage = slitImage.get();
+
+    // Using ternary operators to define the current date and time, for
+    // use in the file name of the image (wanted each part of the date/time
+    // to be represented by a two digit value i.e. 01 instead of 1)
+    String currentDay = day() < 10 ? "0" + day() : "" + day();
+    String currentMonth = month() < 10 ? "0" + month() : "" + month();
+    String currentHour = hour() < 10 ? "0" + hour() : "" + hour();
+    String currentMinute = minute() < 10 ? "0" + minute() : "" + minute();
+    String currentSecond = second() < 10 ? "0" + second() : "" + second();
+
+    // Generating a new filename for this image, based on the current time. Using the
+    // newestImagePath variable to 
+    newestImagePath = "Pictures/TweetATwist-" + currentDay + currentMonth + year() + "-" + currentHour + currentMinute + currentSecond + ".jpg";
+    
+    saveImage.save(newestImagePath);
 
     // Setting the text I would like to appear alongside my image in the tweet. I am including
     // the date and time in the tweet, as processing doesn't seem to like the same text going
