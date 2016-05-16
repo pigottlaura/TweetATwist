@@ -211,7 +211,7 @@ void setup() {
   // the bubbles array to hold all the bubbles we generate (there will only
   // ever be 100 bubbles at any time, as we will just loop around and
   // overwrite the oldest bubbles in the array if we run out of space
-  keyboardButtons = settings.getChild("keyboardButtons").getChildren("buttons");
+  keyboardButtons = settings.getChild("keyboardButtons").getChildren("button");
   bubbles = new Bubble[100];
 
   // Printing out the settings of this sketch
@@ -252,7 +252,7 @@ void setup() {
     // Getting the latest news from RTE Entertainment and creating an empty newNews object,
     // as a placeholder until the news sources have been fully loaded and setup
     newsSources = settings.getChild("newsSources").getChildren("news");
-    getNewsXmlSource();
+    //getNewsXmlSource();
     newNews = new NewsText("", 255);
 
     // Getting any previously saved tweetId data - so we can tell if tweets
@@ -280,7 +280,7 @@ void setup() {
       }
     }
 
-    thread("getLatestNews");
+    //thread("getLatestNews");
   }
 }
 
@@ -524,8 +524,10 @@ void keyPressed() {
     // value e.g. 0-8 and then get the news source using the getNewsXmlSourch thread
     int keyCodeNum = keyCode;
     getNewsAt = floor(map(keyCodeNum, 97, 105, 0, 8));
-    thread("getNewsXmlSource");
+    //thread("getNewsXmlSource");
   } else {
+    /* COMMENTED OUT FOR PEN AND PIXEL
+    
     // Mapping the keyCodes which could represent a letter in the alphabet
     // (a-z lowercase) i.e. 65-90, to map to a range of 10 - 255, which I will use
     // as the width of the bubble that will be created
@@ -550,6 +552,8 @@ void keyPressed() {
         thread("generateBubble");
       }
     }
+    
+    */
   }
 }
 
