@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<settings>
+	<instructionScreen>
+		<section type="general">
+			<line>Press the Enter key to show / hide the "Let's Twist Again" Video</line>
+			<line>Type letters from a-z to generate random bubbles on screen</line>
+			<line>Use the up / down arrow keys to change the quality / speed of your image</line>
+			<line>Press the left / right arrow keys to reset the quality / speed of your image to it's defaults</line>
+			<line>Click on a saved image to zoom it on it (click again to zoom out)</line>
+		</section>
+		
+		<section type="internet">
+			<line>Use the number keypad to choose which news source to read in headlines from</line>
+		</section>
+		
+		<section type="noInternet">
+			<line>Press the Spacebar to take a picture of yourself</line>
+			<line>There is no internet available, so Twitter &amp; RSS feeds have been disabled</line>
+		</section>
+		
+		<section type="twitter">
+				<line>Press the Spacebar to take a picture of yourself and send it to Twitter</line>
+				<line>Send a tweet containing "#TweetATwist" to get a picture taken and tweeted back to you</line>
+		</section>
+		
+	</instructionScreen>
+	
+	<keyboardButtons>
+		<button char="q" value="10"/>
+		<button char="w" value="20"/>	
+		<button char="e" value="30"/>
+		<button char="r" value="40"/>
+		<button char="t" value="50"/>
+		<button char="y" value="60"/>
+		<button char="u" value="70"/>
+		<button char="i" value="80"/>
+		<button char="o" value="90"/>
+		<button char="p" value="100"/>
+		
+		<button char="a" value="11"/>
+		<button char="s" value="22"/>
+		<button char="d" value="33"/>
+		<button char="f" value="44"/>
+		<button char="g" value="55"/>
+		<button char="h" value="66"/>
+		<button char="j" value="77"/>
+		<button char="k" value="88"/>
+		<button char="l" value="100"/>
+		
+		<button char="z" value="14"/>
+		<button char="x" value="28"/>
+		<button char="c" value="42"/>
+		<button char="v" value="56"/>
+		<button char="b" value="70"/>
+		<button char="n" value="85"/>
+		<button char="m" value="100"/>
+	</keyboardButtons>
+	
+	<newsSources>
+		<news from="RTE Entertainment News" href="http://www.rte.ie/news/rss/entertainment.xml"/>
+		<news from="RTE News Headlines" href="http://www.rte.ie/news/rss/news-headlines.xml"/>
+		<news from="RTE Sport News" href="http://www.rte.ie/rss/sport.xml"/>
+		<news from="RTE Soccer News" href="http://www.rte.ie/rss/soccer.xml"/>
+		<news from="RTE GAA News" href="http://www.rte.ie/rss/gaa.xml"/>
+		<news from="RTE Rugby News" href="http://www.rte.ie/rss/rugby.xml"/>
+		<news from="RTE Racing News" href="http://www.rte.ie/rss/racing.xml"/>
+		<news from="RTE Business News" href="http://www.rte.ie/news/rss/business-headlines.xml"/>
+		<news from="RTE News As Gaeilge" href="http://www.rte.ie/news/rss/nuacht.xml"/>
+	</newsSources>
+</settings>
