@@ -135,18 +135,18 @@ void setup() {
   // MAC Computer
 
   /*
-  SD PC*/
+  SD PC
   size(640, 360);
   sketchFrameRate = 60;
   liveStreamFrameRate = 30;
-  
+  */
 
   /*
-  HD MAC
-  size(960, 540);
+  HD MAC */
+  fullScreen();
   sketchFrameRate = 90;
   liveStreamFrameRate = 90;
-  */
+  
   settings = loadXML("settings.xml");
 
   // These variables are used below to calculate the required buffer,
@@ -177,7 +177,7 @@ void setup() {
   // allow the user to increase the quality of the sketch using 
   // the arrow keys, without suddenly having to pause to create a larger
   // buffer
-  totalSavedFrames = sketchHeight;
+  totalSavedFrames = sketchHeight / originalReuseFrames;
 
   // Calculating the amount of seconds that will be reuqired in
   // order to get the most optimal result based on the total
@@ -498,7 +498,7 @@ void keyPressed() {
   {
     // Increase the number of times a frame will be reused in a slit image i.e.
     // decrease the quality of the slitImage
-    if (reuseFrames < 8)
+    if (reuseFrames < 9)
     {
       reuseFrames++;
       println("Each frame will now be reused for " + reuseFrames + " lines in each slit image, so the quality will be reduced");
@@ -508,7 +508,7 @@ void keyPressed() {
   {
     // Decrease the number of times a frame will be reused in a slit image i.e.
     // increase the quality of the slitImage
-    if (reuseFrames > 1)
+    if (reuseFrames > originalReuseFrames)
     {
       reuseFrames--;
       println("Each frame will now be reused for " + reuseFrames + " lines in each slit image, so the quality will be increased");
