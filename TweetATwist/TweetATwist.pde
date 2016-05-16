@@ -23,7 +23,8 @@ Boolean internetAvailable = true;
 // The ability to send images to twitter is off by default, and
 // can be turned on by changing this variable
 Boolean twitterOn = true;  
-String tweetText = "Tweet A Twist.";
+String defaultTweetMessage = "Tweeting from Tweet A Twist.";
+String tweetText = "";
 String tweetHashtags = "#processing #java";
 String twitterQuery = "#tweetatwist";
 
@@ -490,6 +491,7 @@ void keyPressed() {
   {
     println("Capture Image");
     // Saving an image
+    tweetText = defaultTweetMessage;
     thread("captureAnImage");
   } else if (keyCode == ENTER)
   {
@@ -585,7 +587,7 @@ void saveFrame() {
     // saveToFrame variable to track where we last saved to, and then increase it
     // by one each time so that we always save to the next available space in the
     // array
-    allSavedFrames[saveToFrame] = liveStream.get(0, 0, sketchWidth, sketchHeight);
+
     saveToFrame++;
   } else {    
     // Storing in the newest frame in the newFrame variable, so that the shiftFrames
@@ -831,6 +833,7 @@ void tweetWithImage()
     // Creating a new status object and passing in the tweetText, which was set when the 
     // spacebar was pressed
     StatusUpdate status = new StatusUpdate(tweetText);
+    tweetText = "";
 
     // Loading the twitterImage file in as a File. This image was saved to the images
     // folder when the spacebar was pressed (in the key pressed function). Ideally,
@@ -848,7 +851,7 @@ void tweetWithImage()
     // as set above
     twitter.updateStatus(status);
 
-    println("SENDING TWEET A TWIST");
+    println("SENDING TWEET A TWIST TO TWITTER");
     println("--------------------------------------------------------------------------");
   }
   catch (TwitterException twitterException)
@@ -858,8 +861,6 @@ void tweetWithImage()
     println("Error Message: "+ twitterException.getMessage());
     println("--------------------------------------------------------------------------");
   }
-  println("TWEET A TWIST SUCCESSFULLY SENT");
-  println("--------------------------------------------------------------------------");
 }
 
 void captureAnImage() {
@@ -935,9 +936,7 @@ void captureAnImage() {
     
     saveImage.save(newestImagePath);
 
-    // Setting the text I would like to appear alongside my image in the tweet. I am including
-    // the date and time in the tweet, as processing doesn't seem to like the same text going
-    // out in two different tweets
+    // Setting the text I would like to appear alongside my image in the tweet.
     tweetText += " " + tweetHashtags;
 
     // Calling the tweetWithImage thread, which will load in the twitterImage.jpg from the images
