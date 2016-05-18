@@ -10,6 +10,8 @@
   - Go to the File menu > Preferences
   - Change the "Increase maximum available memory to" value to 4000MB
 - Download the [zipped version](https://github.com/pigottlaura/TweetATwist/archive/master.zip) of this repository
+- Go to the MAC's System Preferences menu > Displays
+  - Change the "Resolution" to "Scaled", with a resolution of 1280 x 800
 - Open the "TweetATwist.pde" file and run the application
 
 ### Notes
