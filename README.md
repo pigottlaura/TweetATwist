@@ -9,7 +9,7 @@
     - Download the "Minim" library (by Damien Di Fede and Anderson Mills)
   - Go to the File menu > Preferences
   - Change the "Increase maximum available memory to" value to 4000MB
-- Download the [zipped version](https://github.com/wishiwashere/DesktopApplication_PenAndPixel/archive/master.zip) of this repository
+- Download the [zipped version](https://github.com/pigottlaura/TweetATwist/archive/master.zip) of this repository
 - Open the "TweetATwist.pde" file and run the application
 
 ### Notes
