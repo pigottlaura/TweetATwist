@@ -23,9 +23,9 @@ Boolean internetAvailable = true;
 // The ability to send images to twitter is off by default, and
 // can be turned on by changing this variable
 Boolean twitterOn = true;  
-String defaultTweetMessage = "Tweeting from Tweet A Twist.";
+String defaultTweetMessage = "Having fun at Pen and Pixel :) ";
 String tweetText = "";
-String tweetHashtags = "#processing #java";
+String tweetHashtags = "#PenAndPixel2016";
 String twitterQuery = "#tweetatwist";
 
 // Audio Variables
@@ -804,7 +804,7 @@ void searchTweets() {
 
 
               // Setting the text that will be sent in the reply to the user
-              tweetText = "Hi @" + tweet.getUser().getScreenName() + " :)";
+              tweetText = "Hi @" + tweet.getUser().getScreenName() + " :) Hope you're enjoying Pen and Pixel :)";
               println("NEW TWEET from: @" + tweet.getUser().getScreenName() + " - " + tweet.getText());
 
               // Calling the captureAnImage thread, which will save out and image, and ultimatley a picture frame image. If
