@@ -138,18 +138,17 @@ void setup() {
   // MAC Computer
 
   /*
-  SD PC */
+  SD PC 
    size(640, 360);
    sketchFrameRate = 60;
    liveStreamFrameRate = 30;
-   
+ */
 
   /*
-  HD MAC 
+  HD MAC */
   fullScreen();
   sketchFrameRate = 90;
   liveStreamFrameRate = 90;
-  */
 
   settings = loadXML("settings.xml");
 
