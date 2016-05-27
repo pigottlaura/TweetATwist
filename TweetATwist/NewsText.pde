@@ -51,4 +51,3 @@ public class NewsText {
     return alpha;
   }
 }
-

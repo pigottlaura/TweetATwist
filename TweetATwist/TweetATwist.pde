@@ -142,7 +142,7 @@ void setup() {
    size(640, 360);
    sketchFrameRate = 60;
    liveStreamFrameRate = 30;
- */
+   */
 
   /*
   HD MAC */
@@ -429,11 +429,19 @@ void draw() {
   image(questionMark, width - questionMark.width, 0);
 }
 void mouseClicked() {
+
   if ((mouseX > width - questionMark.width) && (mouseY < questionMark.height))
   {
     showInstructions = !showInstructions;
   } else {
     showInstructions = false;
+    
+    if (fullscreen == false && mouseY < round(width * 1.2)) {
+      println("Capture Image");
+      // Saving an image
+      tweetText = defaultTweetMessage;
+      thread("captureAnImage");
+    }
   }
 
   // Checking if there are picture frame images available, and if there are,
@@ -454,7 +462,7 @@ void mouseClicked() {
     // should throw up any errors) the set the full screen PImage variable to contain the
     // original slitVideoImage which that frame contained, and set the fullscreen
     // boolean to true, so that the draw function knows that it can now show this image
-    if (mouseY > savedPfImages[0].framedImageHeight && getImage < totalSavedPfImages)
+    if (mouseY > savedPfImages[0].framedImageHeight && getImage < totalSavedPfImages - 1)
     {
       showPfImageFullscreen = savedPfImages[getImage].slitVideoImage;
       fullscreen = true;
@@ -933,7 +941,7 @@ void captureAnImage() {
     // Generating a new filename for this image, based on the current time. Using the
     // newestImagePath variable to 
     newestImagePath = "Pictures/TweetATwist-" + currentDay + currentMonth + year() + "-" + currentHour + currentMinute + currentSecond + ".jpg";
-    
+
     saveImage.save(newestImagePath);
 
     // Setting the text I would like to appear alongside my image in the tweet.
